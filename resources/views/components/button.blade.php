@@ -1,3 +1,3 @@
 <span>
-        <a href="{{ $href }}" class="btn btn-{{ $type }}">{{$slot}}</a>
+    <a href="{{ $href }}" class="btn btn-{{ $type }}">{{$slot}}</a>
 </span>
