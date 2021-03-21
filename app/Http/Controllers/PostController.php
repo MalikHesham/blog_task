@@ -28,9 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $allUsers = User::all();
         return view('posts.create',[
-            "allUsers" => $allUsers
+            "allUsers" => User::all()
         ]);
     }
 

@@ -17,8 +17,10 @@
 
     <div class="form-group">
         <label  for="post_creator">Post Creator</label>
-        <select class="form-control" id="post_creator">
-            <option>Ahmed</option>
+        <select name="user_id" class="form-control" id="post_creator">
+            @foreach($allUsers as $user)
+            <option value="{{$user->user_id}}">{{$user->name}}</option>
+            @endforeach
         </select>
     </div>
     <button type="submit" class="btn btn-success">Create Post</button>
