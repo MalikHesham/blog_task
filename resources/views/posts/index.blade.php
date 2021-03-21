@@ -7,30 +7,30 @@
 
 <table class="table">
     <thead>
-      <tr>
+        <tr>
         <th scope="col">#</th>
         <th scope="col">Title</th>
         <th scope="col">Posted By</th>
         <th scope="col">Created At</th>
         <th scope="col">Actions</th>
-      </tr>
+        </tr>
     </thead>
     <tbody>
     @foreach($posts as $post)
-      <tr>
+        <tr>
         <th scope="row">{{ $post['id'] }}</th>
         <td>{{ $post->title }}</td>
-        <td>{{ $post->posted_by }}</td>
-        <td>{{ $post->created_at }}</td>
+        <td>{{ $post->user->name }}</td>
+        <td>{{ $post->created_at->format('Y-m-d') }}</td>
         <td>
-          <!-- <a href="{{ route('posts.show',['post' => $post['id']]) }}" class="btn btn-info" style="margin-bottom: 20px;">View</a> -->
-          <!-- <a href="{{ route('posts.edit',['post' => $post['id']]) }}" class="btn btn-secondary" style="margin-bottom: 20px;">Edit</a> -->
-          <!-- <button type="button" class="btn btn-danger" style="margin-bottom: 20px;">Delete</button> -->
-          <x-button type='primary' href="{{ route('posts.show',['post' => $post->id]) }}" >view</x-button>
-          <x-button type='secondary' href="{{ route('posts.edit',['post' => $post->id]) }}" >Edit</x-button>
-          <x-button type='danger' href="#" >Delete</x-button>
+            <!-- <a href="{{ route('posts.show',['post' => $post['id']]) }}" class="btn btn-info" style="margin-bottom: 20px;">View</a> -->
+            <!-- <a href="{{ route('posts.edit',['post' => $post['id']]) }}" class="btn btn-secondary" style="margin-bottom: 20px;">Edit</a> -->
+            <!-- <button type="button" class="btn btn-danger" style="margin-bottom: 20px;">Delete</button> -->
+            <x-button type='primary' href="{{ route('posts.show',['post' => $post->id]) }}" >view</x-button>
+            <x-button type='secondary' href="{{ route('posts.edit',['post' => $post->id]) }}" >Edit</x-button>
+            <x-button type='danger' href="#" >Delete</x-button>
         </td>
-      </tr>
+        </tr>
     @endforeach
     </tbody>
 </table>

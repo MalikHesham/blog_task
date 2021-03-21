@@ -70,7 +70,8 @@ class PostController extends Controller
      */
     public function edit($postId)
     {
-        return view('posts.edit');
+        $post = Post::find($postId);
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
