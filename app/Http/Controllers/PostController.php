@@ -6,16 +6,10 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $allPosts = Post::all();
+class PostController extends Controller{
+
+    public function index(){
+        $allPosts = Post::paginate(15);
         return view('posts.index', [
             'posts' => $allPosts
         ]);
@@ -26,10 +20,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         return view('posts.create',[
-            "allUsers" => User::all()
+            'users' => User::all()
         ]);
     }
 
@@ -39,8 +32,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
 
         $requestData = $request->all();
         Post::create($requestData);
@@ -53,10 +45,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($postId)
-    {
+    public function show($postId){
         $post = Post::find($postId);
-
         return view('posts.show', [
             'post' => $post,
         ]);
@@ -68,10 +58,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($postId)
-    {
+    public function edit($postId){
+
         $post = Post::find($postId);
-        return view('posts.edit')->with('post', $post);
+        return view('posts.edit',[
+            'post' => $post,
+        ]);
     }
 
     /**
@@ -81,9 +73,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $postId){
+
+        $post = Post::find($postId);
+        $post->update($request->all());
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -92,8 +87,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($postId){
+        $post = Post::find($postId);
+        $post->delete();
+        return redirect()->route('posts.index');
     }
 }
