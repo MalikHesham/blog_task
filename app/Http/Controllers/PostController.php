@@ -76,7 +76,9 @@ class PostController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $postId){
-
+        $this->validate($request,array(
+            'title'=>"required|unique:posts,title,$postId"
+        ));
         $post = Post::find($postId);
         $post->update($request->all());
 

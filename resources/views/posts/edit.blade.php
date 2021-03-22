@@ -2,6 +2,7 @@
 @section('title')Edit Page @endsection
 
 @section('content')
+<div class="container">
 <form method="POST" action="{{route('posts.update', ['post'=>$post->id])}}">
     @csrf
     @method('put')
@@ -24,7 +25,7 @@
         @endforeach
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">update Post</button>
+    <button type="submit" class="btn btn-primary">Update Post</button>
 </form>
-
+</div>
 @endsection
