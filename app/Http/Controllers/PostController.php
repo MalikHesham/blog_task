@@ -34,8 +34,8 @@ class PostController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function store(StorePostRequest $request){
-        $request->validate();
 
+        $request->validate();
         $requestData = $request->all();
         Post::create($requestData);
         return redirect()->route('posts.index');
