@@ -7,10 +7,18 @@
     <div class="form-group">
         <label for="title">Title</label>
         <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp">
+        @error('title')
+        <br>
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
     </div>
     <div class="form-group">
         <label for="description">Description</label>
         <textarea name="description" class="form-control" id="description"> </textarea>
+        @error('description')
+        <br>
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
     </div>
     <div class="form-group">
         <label  for="post_creator">Post Creator</label>
