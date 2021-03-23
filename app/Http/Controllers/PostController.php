@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 class PostController extends Controller{
 
     public function index(){
+
+        $allPosts = Post::with('user')->get();
         $allPosts = Post::paginate(15);
         return view('posts.index', [
             'posts' => $allPosts
