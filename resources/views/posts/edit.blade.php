@@ -11,9 +11,16 @@
         <label for="title">Title</label>
         <input type="text" name="title" value="{{$post->title}}" class="form-control" id="title" aria-describedby="emailHelp">
     </div>
-
+    @error('title')
+        <br>
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <div class="form-group">
         <label for="description">Description</label>
+        @error('description')
+        <br>
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <textarea class="form-control" name="description" id="description"> {{$post->description}}</textarea>
     </div>
 
